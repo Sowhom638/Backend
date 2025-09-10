@@ -4,12 +4,12 @@ const smartphoneSchema = new mongoose.Schema({
   brand: {
     type: String,
     required: true,
-    trim: true
+    
   },
   model: {
     type: String,
     required: true,
-    trim: true
+    
   },
   releaseYear: {
     type: Number,
@@ -24,27 +24,22 @@ const smartphoneSchema = new mongoose.Schema({
   },
   displaySize: {
     type: String,
-    trim: true
+    
   },
   storage: {
     type: String,
-    trim: true
+    
   },
   ram: {
     type: String,
-    trim: true
+    
   },
   cameraSpecs: {
-    type: {
-      rearMP: String,
-      frontMP: String,
-      features: [String]
-    },
-    default: {}
+    type: String
   },
   batteryCapacity: {
     type: String,
-    trim: true
+    
   },
   connectivity: {
     type: String,

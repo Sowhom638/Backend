@@ -4,12 +4,12 @@ const bookSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
-    trim: true
+    
   },
   author: {
     type: String,
     required: true,
-    trim: true
+    
   },
   publishedYear: {
     type: Number,
@@ -38,12 +38,11 @@ const bookSchema = new mongoose.Schema({
   language: {
     type: String,
     required: true,
-    trim: true
+    
   },
   country: {
     type: String,
     default: 'United States',
-    trim: true
   },
   rating: {
     type: Number,
@@ -53,11 +52,10 @@ const bookSchema = new mongoose.Schema({
   },
   summary: {
     type: String,
-    trim: true
   },
   coverImageUrl: {
     type: String,
-    trim: true
+    
   }
 }, { timestamps: true });
 

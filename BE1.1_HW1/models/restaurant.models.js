@@ -4,7 +4,7 @@ const restaurantSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    trim: true
+    
   },
   cuisine: {
     type: String,
@@ -28,20 +28,20 @@ const restaurantSchema = new mongoose.Schema({
   location: {
     type: String,
     required: true,
-    trim: true
+    
   },
   owner: {
     type: String,
     required: true,
-    trim: true
+    
   },
   phone: {
     type: String,
-    trim: true
+    
   },
   website: {
     type: String,
-    trim: true
+    
   },
   openingYear: {
     type: Number,
