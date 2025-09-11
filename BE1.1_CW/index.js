@@ -28,4 +28,35 @@ async function createMovie(newMovie) {
   }
 }
 
-createMovie(newMovie)
+// createMovie(newMovie)
+
+async function readMovieByTitle(movieTitle){
+  try {
+    const movie = await Movie.findOne({title: movieTitle});
+    console.log(movie);
+    
+  } catch (error) {
+    throw error;
+  }
+}
+// readMovieByTitle("Lagaan");
+async function readAllMovies(movieTitle){
+  try {
+    const movie = await Movie.find();
+    console.log(movie);
+    
+  } catch (error) {
+    throw error;
+  }
+}
+// readAllMovies();
+async function readMoviesByDirector(directorName){
+  try {
+    const movie = await Movie.find({director: directorName});
+    console.log(movie);
+    
+  } catch (error) {
+    throw error;
+  }
+}
+readMoviesByDirector('Kabir Khan');
