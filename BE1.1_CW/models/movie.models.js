@@ -5,12 +5,12 @@ const MovieSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  releaseryear: {
+  releaseYear: {
     type: Number,
     required: true,
   },
   genre: {
-    type: String,
+    type: [String],
     enum: [
       "Action",
       "Drama",
@@ -29,8 +29,8 @@ const MovieSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  actor: {
-    type: String,
+  actors: {
+    type: [String],
   },
   language: {
     type: String,
@@ -63,6 +63,6 @@ const MovieSchema = new mongoose.Schema({
     timestamps: true
 });
 
-const Movie = mongoose.model("Twitter", MovieSchema);
+const Movie = mongoose.model("Movie", MovieSchema);
 
 module.exports = Movie;
