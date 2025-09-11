@@ -1,0 +1,17 @@
+{
+  "name": "be1.1_cw",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@dotenvx/dotenvx": "^1.49.0",
+    "dotenv": "^17.2.2",
+    "mongoose": "^8.18.1"
+  },
+  "description": ""
+}
