@@ -59,4 +59,30 @@ async function readMoviesByDirector(directorName){
     throw error;
   }
 }
-readMoviesByDirector('Kabir Khan');
+// readMoviesByDirector('Kabir Khan');
+
+// find movie by id and update it's rating
+
+async function updateMovie(movieId, dataToUpdate) {
+try {
+const updatedMovie = await Movie.findByIdAndUpdate(movieId, dataToUpdate, { new: true })
+console.log(updatedMovie)
+} catch (error) {
+console.log("Error in updating Movie rating", error)
+}
+}
+
+// updateMovie("66162fdc7f2872494a4ea9b2", { releaseYear: 2002 })
+
+// find one data and update its value
+
+async function updateMovieDetail(movieTitle, dataToUpdate) {
+try {
+const updatedMovie = await Movie.findOneAndUpdate({ title: movieTitle }, dataToUpdate, { new: true })
+console.log(updatedMovie)
+} catch (error) {
+console.log("Error in changing data:", error)
+}
+}
+
+updateMovieDetail("Kabhi Khushi Kabhie Gham", { releaseYear: 2001 })
