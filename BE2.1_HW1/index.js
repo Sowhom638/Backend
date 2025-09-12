@@ -135,4 +135,27 @@ async function findByPhoneNumber(phnNum, updation) {
   
   }
 }
-findByPhoneNumber(1288997392, {isDeliveryAvailable: true})
+// findByPhoneNumber(1288997392, {isDeliveryAvailable: true})
+
+// Create a function deleteRestaurantById that accepts a restaurant ID and deletes the restaurant data from the db. Take any restaurant id from your database and delete the records of that restaurant.
+async function deleteRestaurantById(restaurantId) {
+try {
+const deleteRestaurant = await Restaurant.findByIdAndDelete(restaurantId)
+console.log(deleteRestaurant);
+} catch (error) {
+console.log("Error in Deleting restaurant", error)
+}
+}
+// deleteRestaurantById('68c39d327fc29f1572701438');
+
+// Create a function deleteRestaurantByName that accepts a restaurant name and deletes the restaurant data from the db. Take any restaurant name from your database and delete the records of that restaurant.
+async function deleteRestaurantByName (restaurantName) {
+try {
+const deleteRestaurant = await Restaurant.findOneAndDelete({name: restaurantName})
+console.log(deleteRestaurant);
+} catch (error) {
+console.log("Error in Deleting restaurant", error)
+}
+}
+
+deleteRestaurantByName ("Som Sarovar");
