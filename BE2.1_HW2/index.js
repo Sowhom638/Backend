@@ -163,4 +163,26 @@ async function findHotelByPhone(phnNum, updation) {
     throw error;
   }
 }
-findHotelByPhone('+1299655890', {phoneNumber: '+1997687392'});
+// findHotelByPhone('+1299655890', {phoneNumber: '+1997687392'});
+
+// Create a function deleteHotelById that accepts a hotel ID and deletes the hotel data from the db. Take any hotel id from your database and delete the records of that hotel.
+async function deleteHotelById(hotelId) {
+try {
+const deleteHotel = await Hotel.findByIdAndDelete(hotelId)
+console.log(deleteHotel);
+} catch (error) {
+console.log("Error in Deleting Hotel", error)
+}
+}
+// deleteHotelById('68c3a972bc317b1ad06eccb9')
+
+// Create a function deleteHotelByPhoneNumber that accepts a hotel's phone number and deletes the hotel data from the db. Take any hotel phone number from your database and delete the records of that hotel.
+async function deleteHotelByPhoneNumber(phnNum) {
+try {
+const deletedHotel = await Hotel.findOneAndDelete({phoneNumber: phnNum})
+console.log(deletedHotel);
+} catch (error) {
+console.log("Error in Deleting Hotel", error)
+}
+}
+deleteHotelByPhoneNumber('+1234567890')
