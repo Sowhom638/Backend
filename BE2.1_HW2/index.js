@@ -42,7 +42,7 @@ async function createHotel(newHotel) {
   }
 }
 
-createHotel(newHotel);
+// createHotel(newHotel);
 
 // 3. Create a function to read all hotels from the database. Console all the hotels. Use proper function and variable names.
 async function allHotels() {
@@ -53,7 +53,7 @@ async function allHotels() {
     throw error;
   }
 }
-allHotels();
+// allHotels();
 
 // 4. Create a function to read a hotel by its name ("Lake View"). Console the restaurant details of Lake View hotel. Use proper function and variable names.
 async function hotelByName(hotelName) {
@@ -64,7 +64,7 @@ async function hotelByName(hotelName) {
     throw error;
   }
 }
-hotelByName("Lake View");
+// hotelByName("Lake View");
 
 // 5. Create a function to read all hotels which offers parking space. Console all the hotel details.
 async function parkingSpaceAvailable() {
@@ -75,7 +75,7 @@ async function parkingSpaceAvailable() {
     throw error;
   }
 }
-parkingSpaceAvailable();
+// parkingSpaceAvailable();
 
 // 6. Create a function to read all hotels which has restaurant available. Console all the hotels.
 async function isRestaurant() {
@@ -86,7 +86,7 @@ async function isRestaurant() {
     throw error;
   }
 }
-isRestaurant();
+// isRestaurant();
 
 // 7. Create a function to read all hotels by category ("Mid-Range"). Console all the mid range hotels.
 async function midRangeHotel() {
@@ -97,7 +97,7 @@ async function midRangeHotel() {
     throw error;
   }
 }
-midRangeHotel();
+// midRangeHotel();
 
 // 8. Create a function to read all hotels by price range ("$$$$ (61+)"). Console all the hotels.
 async function priceRangeOfHotel() {
@@ -108,7 +108,7 @@ async function priceRangeOfHotel() {
     throw error;
   }
 }
-priceRangeOfHotel();
+// priceRangeOfHotel();
 
 // 9. Create a function to read all hotels with 4.0 rating. Console the hotels.
 async function ratingeOfHotel() {
@@ -119,7 +119,7 @@ async function ratingeOfHotel() {
     throw error;
   }
 }
-ratingeOfHotel();
+// ratingeOfHotel();
 
 // 10. Create a function to read a hotel by phone number ("+1299655890"). Console the hotel data.
 async function phoneNumberOfHotel(phnNum) {
@@ -130,4 +130,37 @@ async function phoneNumberOfHotel(phnNum) {
     throw error;
   }
 }
-phoneNumberOfHotel(1299655890);
+// phoneNumberOfHotel(1299655890);
+
+//  Create a function that accepts a hotel ID and an object with updated data, and updates the hotel data with the provided ID. Take the _id of the hotel from your database which has the name Lake View and update its checkOutTime to 11 AM. Console the updated hotel.
+async function findHotelById(hotelId, updation) {
+  try {
+    const byPhone = await Hotel.findByIdAndUpdate(hotelId, updation, {new: true});
+    console.log(byPhone);
+  } catch (error) {
+    throw error;
+  }
+}
+// findHotelById('68c3a7ca070044b43893c6b3', {checkOutTime: '11 AM'})
+
+// Create a function that accepts a hotel name and an object with updated data, and updates the hotel data. Take the hotel which has the name "Sunset Resort" and update its rating to 4.2. Console the updated hotel.
+async function findHotelByName(hotelName, updation) {
+  try {
+    const byPhone = await Hotel.findOneAndUpdate({name: hotelName}, updation, {new: true});
+    console.log(byPhone);
+  } catch (error) {
+    throw error;
+  }
+}
+// findHotelByName("Sunset Resort", {rating: 4.2})
+
+// Create a function that accepts a hotel's phone number and an object with updated data, and updates the hotel data. Take the hotel which has the phone number "+1299655890" and update its phone number  to "+1997687392". Console the updated hotel details.
+async function findHotelByPhone(phnNum, updation) {
+  try {
+    const byPhone = await Hotel.findOneAndUpdate({phoneNumber: phnNum}, updation, {new: true});
+    console.log(byPhone);
+  } catch (error) {
+    throw error;
+  }
+}
+findHotelByPhone('+1299655890', {phoneNumber: '+1997687392'});
