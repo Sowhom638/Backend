@@ -85,4 +85,28 @@ console.log("Error in changing data:", error)
 }
 }
 
-updateMovieDetail("Kabhi Khushi Kabhie Gham", { releaseYear: 2001 })
+// updateMovieDetail("Kabhi Khushi Kabhie Gham", { releaseYear: 2001 })
+
+// find a movie by id and delete from the database
+
+async function deleteMovie(movieId) {
+try {
+const deleteMovie = await Movie.findByIdAndDelete(movieId)
+console.log(deleteMovie);
+} catch (error) {
+console.log("Error in Deleting Movie", error)
+}
+}
+
+// deleteMovie("68c2ff3626d4a4da3441d235")
+
+async function deleteMovieFromDb(movieTitle) {
+try {
+const deletedMovie = await Movie.findOneAndDelete({ title: movieTitle })
+console.log("This movie was deleted:", deletedMovie)
+} catch (error) {
+console.log("Error in movie deletion ", error)
+}
+}
+
+// deleteMovieFromDb("3 Idiots")
