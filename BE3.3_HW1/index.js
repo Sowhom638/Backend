@@ -11,11 +11,8 @@ const books = [
 ];
 
 const todos = [
-
   { id: 1, title: 'Water the plants', day: 'Saturday' },
-
   { id: 2, title: 'Go for a walk', day: 'Sunday' }
-
 ];
 
 app.get("/", (req, res) => {
@@ -49,6 +46,23 @@ if(index === -1){
 }
 });
 
+app.post("/books/:id", (req, res) => {
+const bookId = parseInt(req.params.id); // converting the string into integer
+const updatedBookData = req.body;
+
+const bookToUpdate = books.find((book) => book.id === bookId);
+if(!bookToUpdate){
+  res.status(404).json({ error: "Book data doesn't exist." });
+} else {
+  if(!updatedBookData.title || !updatedBookData.author || !updatedBookData.year){
+    res.status(400).json({ error: "title, author and year are required." });
+  }else{
+    Object.assign(bookToUpdate, updatedBookData); // Object.assign(destinationObject, sourceObject) --> To copy object data from source object to destination object
+  res.status(200).json({ message: "Book data updated successfully.", book: bookToUpdate});
+  }
+}
+});
+
 app.post("/todos", (req, res) => {
 const newTodo = req.body;
 
@@ -56,7 +70,7 @@ if (!newTodo.title || !newTodo.day) {
 res.status(400).json({ error: "title and day are required." });
 } else {
 todos.push(newTodo);
-res.status(201).json({ message: "todo added successfully.", todo: newTodo });
+res.status(201).json({ message: "Todo added successfully.", todo: newTodo });
 }
 });
 
@@ -73,6 +87,23 @@ if(index === -1){
 } else {
   todos.splice(index,1);
   res.status(200).json({ message: "todo deleted successfully."});
+}
+});
+
+app.post("/todos/:id", (req, res) => {
+const todoId = parseInt(req.params.id); // converting the string into integer
+const updatedTodoData = req.body;
+
+const todoToUpdate = todos.find((todo) => todo.id === todoId);
+if(!todoToUpdate){
+  res.status(404).json({ error: "Todo  doesn't exist." });
+} else {
+  if(!updatedTodoData.title || !updatedTodoData.day){
+    res.status(400).json({ error: "title and day are required." });
+  }else{
+    Object.assign(todoToUpdate, updatedTodoData); // Object.assign(destinationObject, sourceObject) --> To copy object data from source object to destination object
+  res.status(200).json({ message: "Todo data updated successfully.", todo: todoToUpdate});
+  }
 }
 });
 
