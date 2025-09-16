@@ -8,36 +8,44 @@ const Restaurant = require("./models/restaurant.models");
 
 initializeDatabase();
 
-const newRestaurant = {
-  name: "Yo China",
-  cuisine: ["Chinese", "Italian"],
-  location: "MG Road, Bangalore",
-  rating: 3.9,
-  reviews: [],
-  website: "https://yo-example.com",
-  phoneNumber: "+1288997392",
-  openHours: "Tue-Sun: 10:00 AM - 11:00 PM",
-  priceRange: "$$$ (31-60)",
-  reservationsNeeded: true,
-  isDeliveryAvailable: false,
-  menuUrl: "https://yo-example.com/menu",
-  photos: [
-    "https://example.com/yo-photo1.jpg",
-    "https://example.com/yo-photo2.jpg",
-    "https://example.com/yo-photo3.jpg",
-  ],
-};
+// const newRestaurant = {
+//   name: "Yo China",
+//   cuisine: ["Chinese", "Italian"],
+//   location: "MG Road, Bangalore",
+//   rating: 3.9,
+//   reviews: [],
+//   website: "https://yo-example.com",
+//   phoneNumber: "+1288997392",
+//   openHours: "Tue-Sun: 10:00 AM - 11:00 PM",
+//   priceRange: "$$$ (31-60)",
+//   reservationsNeeded: true,
+//   isDeliveryAvailable: false,
+//   menuUrl: "https://yo-example.com/menu",
+//   photos: [
+//     "https://example.com/yo-photo1.jpg",
+//     "https://example.com/yo-photo2.jpg",
+//     "https://example.com/yo-photo3.jpg",
+//   ],
+// };
 
 // Creating new restaurant data.
 async function createRestaurant(newRestaurant) {
   try {
     const restaurant = new Restaurant(newRestaurant);
     const saveRestaurant = await restaurant.save();
-    console.log("New Restaurant data:", saveRestaurant);
+    return saveRestaurant;
   } catch (error) {
     throw error;
   }
 }
+app.post("/restaurants", async (req, res) => {
+    try {
+        const saveRestaurant = await createRestaurant(req.body)
+        res.status(201).json({ message: "Restaurant added successfully.", restaurant: saveRestaurant })
+    } catch (error) {
+        res.status(500).json({ error: "Failed to add restaurant" })
+    }
+})
 
 // createRestaurant(newRestaurant);
 
