@@ -42,13 +42,20 @@ async function createHotel(newHotel) {
   try {
     const hotel = new Hotel(newHotel);
     const saveHotel = await hotel.save();
-    console.log("New Hotel data:", saveHotel);
+    return saveHotel;
   } catch (error) {
     throw error;
   }
 }
+app.post("/hotels", async (req, res) => {
+    try {
+        const saveHotel = await createHotel(req.body)
+        res.status(201).json({ message: "Hotel added successfully.", hotel: saveHotel })
+    } catch (error) {
+        res.status(500).json({ error: "Failed to add hotel" })
+    }
+})
 
-// createHotel(newHotel);
 
 // 3. Create a function to read all hotels from the database. Console all the hotels. Use proper function and variable names.
 async function allHotels() {
