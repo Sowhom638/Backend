@@ -54,7 +54,7 @@ async function allRestaurants() {
 app.get("/restaurants",async (req, res)=>{
   try {
     const restaurant = await allRestaurants();
-  if(restaurant != 0){
+  if(restaurant.length != 0){
     res.status(200).json({ message: "restaurant data founded successfully.", restaurant});
   }else{
 res.status(404).json({ error: "restaurant not Found." });
@@ -64,7 +64,7 @@ res.status(404).json({ error: "restaurant not Found." });
   }
 })
 
-// 4. Create a function to read a restaurant by its name ("New Restaurant"). Console the restaurant details. Use proper function and variable names.
+// 4. Create a function to read a restaurant by its name. Console the restaurant details. Use proper function and variable names.
 async function restaurantsByName(restaurantName) {
   try {
     const all = await Restaurant.findOne({name: restaurantName});
@@ -77,7 +77,7 @@ async function restaurantsByName(restaurantName) {
 app.get("/restaurants/:restaurantName",async (req, res)=>{
   try {
     const restaurant = await restaurantsByName(req.params.restaurantName);
-  if(restaurant != 0){
+  if(restaurant.length != 0){
     res.status(200).json({ message: "restaurant data founded successfully.", restaurant});
   }else{
 res.status(404).json({ error: "restaurant not Found." });
@@ -88,7 +88,7 @@ res.status(404).json({ error: "restaurant not Found." });
 })
 
 
-// 7. Create a function to read a restaurant by phone number (+1288997392). Console the restaurant details.
+// 7. Create a function to read a restaurant by phone number. Console the restaurant details.
 async function restaurantsByPhoneNumber(phone) {
   try {
     const all = await Restaurant.findOne({phoneNumber: phone});
@@ -101,7 +101,7 @@ async function restaurantsByPhoneNumber(phone) {
 app.get("/restaurants/directory/:phoneNumber",async (req, res)=>{
   try {
     const restaurant = await restaurantsByPhoneNumber(req.params.phoneNumber);
-  if(restaurant != 0){
+  if(restaurant.length != 0){
     res.status(200).json({ message: "restaurant data founded successfully.", restaurant});
   }else{
 res.status(404).json({ error: "restaurant not Found." });
@@ -111,7 +111,7 @@ res.status(404).json({ error: "restaurant not Found." });
   }
 })
 
-// 8. Create a function to read all restaurants by cuisine ("Italian"). Console all the restaurants with Italian cuisine.
+// 8. Create a function to read all restaurants by cuisine . Console all the restaurants.
 async function restaurantBycuisine(cuisineName) {
   try {
     const all = await Restaurant.find({cuisine: cuisineName});
@@ -123,7 +123,7 @@ async function restaurantBycuisine(cuisineName) {
 app.get("/restaurants/cuisine/:cuisineName",async (req, res)=>{
   try {
     const restaurant = await restaurantBycuisine(req.params.cuisineName);
-  if(restaurant != 0){
+  if(restaurant.length != 0){
     res.status(200).json({ message: "restaurant data founded successfully.", restaurant});
   }else{
 res.status(404).json({ error: "restaurant not Found." });
@@ -144,7 +144,7 @@ async function restaurantByLocation(restloc) {
 app.get("/restaurants/location/:restaurantLocation",async (req, res)=>{
   try {
     const restaurant = await restaurantByLocation(req.params.restaurantLocation);
-  if(restaurant != 0){
+  if(restaurant.length != 0){
     res.status(200).json({ message: "restaurant data founded successfully.", restaurant});
   }else{
 res.status(404).json({ error: "restaurant not Found." });

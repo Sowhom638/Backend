@@ -48,7 +48,7 @@ async function readMovieByTitle(movieTitle){
 app.get("/movies/:title",async (req, res)=>{
   try {
     const movie = await readMovieByTitle(req.params.title);
-  if(movie != 0){
+  if(movie.length != 0){
     res.status(200).json({ message: "Movie data founded successfully.", movie});
   }else{
 res.status(404).json({ error: "Movie not Found." });
@@ -71,7 +71,7 @@ async function readAllMovies(){
 app.get("/movies",async (req, res)=>{
   try {
     const movie = await readAllMovies();
-  if(movie != 0){
+  if(movie.length != 0){
     res.status(200).json({ message: "Movie data founded successfully.", movie});
   }else{
 res.status(404).json({ error: "Movie not Found." });
@@ -94,7 +94,7 @@ async function readMoviesByDirector(directorName){
 app.get("/movies/directors/:director",async (req, res)=>{
   try {
     const movie = await readMoviesByDirector(req.params.director);
-  if(movie != 0){
+  if(movie.length != 0){
     res.status(200).json({ message: "Movie data founded successfully.", movie});
   }else{
 res.status(404).json({ error: "Movie not Found." });
@@ -116,7 +116,7 @@ async function readMoviesByGenre(genrename){
 app.get("/movies/genres/:genre",async (req, res)=>{
   try {
     const movie = await readMoviesByGenre(req.params.genre);
-  if(movie != 0){
+  if(movie.length != 0){
     res.status(200).json({ message: "Movie data founded successfully.", movie});
   }else{
 res.status(404).json({ error: "Movie not Found." });
