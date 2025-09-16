@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
+app.use(express.json());
 
 const { initializeDatabase } = require("./db/db.connect");
 const Movie = require("./models/movie.models")
