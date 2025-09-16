@@ -162,6 +162,26 @@ res.status(404).json({ error: "restaurant not Found." });
   }
 })
 
+async function deleteRestaurant(restaurantId) {
+    try {
+        const deletedRestaurant = await Restaurant.findByIdAndDelete(restaurantId);
+        return deletedRestaurant;
+    } catch (error) {
+        console.log(error);
+    }
+}
+app.delete("/restaurants/:restaurantId", async (req, res) => {
+    try {
+        const deletedRestaurant = await deleteRestaurant(req.params.restaurantId);
+        if (deletedRestaurant) {
+            res.status(200).json({ message: "Restaurant deleted successfully." });
+        }
+    } catch (error) {
+        res.status(500).json({ error: "Failed to delete restaurant." });
+    }
+});
+
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT,()=>{
   console.log(`Server is running in port ${PORT}`);
