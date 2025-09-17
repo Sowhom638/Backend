@@ -172,6 +172,30 @@ res.status(404).json({ error: "hotel not Found." });
   }
 })
 
+async function updateHotel(hotelId, dataToUpdate) {
+    try {
+        const updatedHotel = await Hotel.findByIdAndUpdate(hotelId, dataToUpdate, {
+            new: true,
+        });
+        return updatedHotel;
+    } catch (error) {
+        console.log("Error in updating hotel rating", error);
+    }
+}
+app.post("/hotels/:hotelId", async (req, res) => {
+    try {
+        const updatedHotel = await updateHotel(req.params.hotelId, req.body);
+        if (updatedHotel) {
+            res.status(200).json({ message: "Hotel updated successfully.", updatedHotel });
+        } else {
+            res.status(404).json({ error: "Hotel not found." });
+        }
+    } catch (error) {
+        res.status(500).json({ error: "failed to update hotel." });
+    }
+});
+
+
 async function deleteHotel(hotelId) {
     try {
         const deletedHotel = await Hotel.findByIdAndDelete(hotelId);
