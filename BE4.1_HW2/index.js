@@ -172,6 +172,24 @@ res.status(404).json({ error: "hotel not Found." });
   }
 })
 
+async function deleteHotel(hotelId) {
+    try {
+        const deletedHotel = await Hotel.findByIdAndDelete(hotelId);
+        return deletedHotel;
+    } catch (error) {
+        console.log(error);
+    }
+}
+app.delete("/hotels/:hotelId", async (req, res) => {
+    try {
+        const deletedHotel = await deleteHotel(req.params.hotelId);
+        if (deletedHotel) {
+            res.status(200).json({ message: "Hotel deleted successfully." });
+        }
+    } catch (error) {
+        res.status(500).json({ error: "Failed to delete hotel." });
+    }
+});
 
 
 const PORT = process.env.PORT || 3000;
