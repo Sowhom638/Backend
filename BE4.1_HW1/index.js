@@ -162,6 +162,29 @@ res.status(404).json({ error: "restaurant not Found." });
   }
 })
 
+async function updateRestaurant(restaurantId, dataToUpdate) {
+    try {
+        const updatedRestaurant = await Restaurant.findByIdAndUpdate(restaurantId, dataToUpdate, {
+            new: true,
+        });
+        return updatedRestaurant;
+    } catch (error) {
+        console.log("Error in updating restaurant rating", error);
+    }
+}
+app.post("/restaurants/:restaurantId", async (req, res) => {
+    try {
+        const updatedRestaurant = await updateRestaurant(req.params.restaurantId, req.body);
+        if (updatedRestaurant) {
+            res.status(200).json({ message: "restaurant updated successfully.", updatedRestaurant });
+        } else {
+            res.status(404).json({ error: "restaurant not found." });
+        }
+    } catch (error) {
+        res.status(500).json({ error: "failed to update restaurant." });
+    }
+});
+
 async function deleteRestaurant(restaurantId) {
     try {
         const deletedRestaurant = await Restaurant.findByIdAndDelete(restaurantId);
