@@ -36,7 +36,6 @@ async function readRecipeByTitle(RecipeTitle){
     throw error;
   }
 }
-// readRecipeByTitle("Lagaan");
 app.get("/recipes/:title",async (req, res)=>{
   try {
     const recipe = await readRecipeByTitle(req.params.title);
