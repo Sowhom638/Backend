@@ -9,6 +9,7 @@ const Book = () => {
 
   return data ? (
     <div>
+      <h2>All Books</h2>
         <ul>
       {data && data.book.map(book=>(
         <li key={book._id}>{book.title}</li>
